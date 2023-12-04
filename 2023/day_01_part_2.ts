@@ -18,7 +18,7 @@ function checkNumberMatch(s: string, i: number): string | null {
     return s[i];
   } 
   for (const [word, digit] of Object.entries(LOOKUP)) {
-    if (s.slice(i,).startsWith(word)) {
+    if (s.slice(i).startsWith(word)) {
       return digit;
     }
   }
