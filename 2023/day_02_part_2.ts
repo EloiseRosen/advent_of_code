@@ -4,7 +4,7 @@ const LOOKUP = {'red': 12, 'green': 13, 'blue': 14};
 
 const arr: string[] = fs.readFileSync('input.txt', 'utf8').split('\n');
 
-let rtn = 0; // add up the IDs of the games that would have been possible
+let ans = 0; // add up the IDs of the games that would have been possible
 for (const s of arr) {
   const maxes = {'red': 0, 'green': 0, 'blue': 0};
   const [gameStr, playsStr] = s.split(': ');
@@ -17,6 +17,6 @@ for (const s of arr) {
     }
   }
   const power = Object.values(maxes).reduce((acc, amount) => acc * amount, 1);
-  rtn += power;
+  ans += power;
 }
-console.log(rtn);
+console.log(ans);

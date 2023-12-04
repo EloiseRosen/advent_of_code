@@ -21,7 +21,7 @@ function checkForSymbol(grid: string[], r: number, c: number, dirs: [number, num
 
 
 const grid: string[] = fs.readFileSync('input.txt', 'utf8').split('\n');
-let rtn = 0;
+let ans = 0;
 for (let r = 0; r < grid.length; r++) {
   let c = 0;
   while (c < grid[0].length) {
@@ -36,7 +36,7 @@ for (let r = 0; r < grid.length; r++) {
       }
       if (keep) {
         const fullNum = Number(grid[r].slice(c, c2+1));
-        rtn += fullNum;
+        ans += fullNum;
       }
       c = c2 + 1; // we can advance until after the number we've found
     } else {
@@ -44,4 +44,4 @@ for (let r = 0; r < grid.length; r++) {
     }
   }
 }
-console.log(rtn);
+console.log(ans);

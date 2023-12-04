@@ -27,7 +27,7 @@ function checkNumberMatch(s: string, i: number): string | null {
 
 
 const arr: string[] = fs.readFileSync('input.txt', 'utf8').split('\n');
-let rtn = 0;
+let ans = 0;
 for (const s of arr) {
   let first = '', last = '';
   for (let i = 0; i < s.length; i++) {
@@ -44,6 +44,6 @@ for (const s of arr) {
       break;
     }
   }
-  rtn += Number(first + last);
+  ans += Number(first + last);
 }
-console.log(rtn);
+console.log(ans);

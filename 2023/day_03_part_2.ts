@@ -16,7 +16,7 @@ function getLeftOrRightNum(grid: string[], r: number, c: number, goLeft: boolean
 
 
 const grid: string[] = fs.readFileSync('input.txt', 'utf8').split('\n');
-let rtn = 0;
+let ans = 0;
 for (let r = 0; r < grid.length; r++) {
   for (let c = 0; c < grid[0].length; c++) {
     if (grid[r][c] === '*') {
@@ -46,9 +46,9 @@ for (let r = 0; r < grid.length; r++) {
         }
       }
       if (nums.length >= 2) {
-        rtn += nums.reduce((acc, val) => acc * val, 1);
+        ans += nums.reduce((acc, val) => acc * val, 1);
       }
     }
   }
 }
-console.log(rtn);
+console.log(ans);

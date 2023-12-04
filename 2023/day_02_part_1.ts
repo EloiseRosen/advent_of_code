@@ -4,7 +4,7 @@ const LOOKUP = {'red': 12, 'green': 13, 'blue': 14};
 
 const arr: string[] = fs.readFileSync('input.txt', 'utf8').split('\n');
 
-let rtn = 0; // add up the IDs of the games that would have been possible
+let ans = 0; // add up the IDs of the games that would have been possible
 for (const s of arr) {
   let valid = true;
   const [gameStr, playsStr] = s.split(': ');
@@ -24,7 +24,7 @@ for (const s of arr) {
     }
   }
   if (valid) {
-    rtn += Number(game);
+    ans += Number(game);
   }
 }
-console.log(rtn);
+console.log(ans);
