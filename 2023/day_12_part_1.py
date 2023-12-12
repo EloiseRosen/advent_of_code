@@ -29,7 +29,7 @@ def is_valid(spring_map, spring_counts):
     return new_spring_counts == spring_counts
 
 
-def ways(spring_map, spring_counts):
+def get_ways(spring_map, spring_counts):
     """Returns number of ways #s can be placed in `spring_map` to match `spring_counts`."""
     # generate the unique permutations
     num_missing_hash = sum(spring_counts) - spring_map.count('#')
@@ -63,5 +63,5 @@ for line in open('input.txt').read().split('\n'):
     spring_map, spring_counts = line.split(' ')
     spring_map = list(spring_map)
     spring_counts = list(map(int, spring_counts.split(',')))
-    ans += ways(spring_map, spring_counts)
+    ans += get_ways(spring_map, spring_counts)
 print(ans)
