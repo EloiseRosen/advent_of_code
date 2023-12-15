@@ -5,6 +5,7 @@ def get_hash(s):
     return curr
 
 
+# note: in Python 3.6 and later, dictionary order is guaranteed to be insertion order
 boxes = [{} for _ in range(0, 256)]
 steps = open('input.txt').read().replace('\n', '').split(',')
 for step in steps:
