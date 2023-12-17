@@ -11,7 +11,7 @@ MIN_STEPS_IN_DIR = 4
 seen = set()
 # "Because you already start in the top-left block, you don't incur that block's heat 
 # loss unless you leave that block and then return to it."
-min_heap = [(0, 0,0, 0,0, 0)] # cost, r,c, last_r_change,last_c_change, consecutive_steps_in_dir
+min_heap = [(0, 0,0, 0,0, 0)] # cost, r,c, last_r_change,last_c_change, steps_in_dir
 while min_heap:
     cost, r,c, last_r_change,last_c_change, steps_in_dir = heapq.heappop(min_heap)
     if (r,c, last_r_change,last_c_change, steps_in_dir) not in seen:
