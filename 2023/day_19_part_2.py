@@ -1,5 +1,4 @@
 import re
-from copy import deepcopy
 
 
 letters = ['x', 'm', 'a', 's']  # index indicates letter number
@@ -38,32 +37,24 @@ def get_accepted_ranges():
         else:
             range_idx = letters.index(rule[0])
             split_value = rule[2]
+            range_that_passes_condition = ranges[:]
+            range_that_fails_condition = ranges[:]
 
             if rule[1] == '<':
-                range_that_passes_condition = deepcopy(ranges)
                 range_that_passes_condition[range_idx] = [ranges[range_idx][0], min(ranges[range_idx][1], split_value-1)]
-                if range_that_passes_condition[range_idx][0] <= range_that_passes_condition[range_idx][1]:
-                    if rule[3] == 'A':
-                        accepted.append(range_that_passes_condition)
-                    elif rule[3] != 'R':
-                        helper(range_that_passes_condition, workflows_dct[rule[3]])
-                range_that_fails_condition = deepcopy(ranges)
                 range_that_fails_condition[range_idx] = [max(ranges[range_idx][0], split_value), ranges[range_idx][1]]
-                if range_that_fails_condition[range_idx][0] <= range_that_fails_condition[range_idx][1]:
-                    helper(range_that_fails_condition, ruleset[1:])
-
             elif rule[1] == '>':
-                range_that_passes_condition = deepcopy(ranges)
                 range_that_passes_condition[range_idx] = [max(ranges[range_idx][0], split_value+1), ranges[range_idx][1]]
-                if range_that_passes_condition[range_idx][0] <= range_that_passes_condition[range_idx][1]:
-                    if rule[3] == 'A':
-                        accepted.append(range_that_passes_condition)
-                    elif rule[3] != 'R':
-                        helper(range_that_passes_condition, workflows_dct[rule[3]])
-                range_that_fails_condition = deepcopy(ranges)
                 range_that_fails_condition[range_idx] = [ranges[range_idx][0], min(ranges[range_idx][1], split_value)]
-                if range_that_fails_condition[range_idx][0] <= range_that_fails_condition[range_idx][1]:
-                    helper(range_that_fails_condition, ruleset[1:])
+
+            if range_that_passes_condition[range_idx][0] <= range_that_passes_condition[range_idx][1]:
+                if rule[3] == 'A':
+                    accepted.append(range_that_passes_condition)
+                elif rule[3] != 'R':
+                    helper(range_that_passes_condition, workflows_dct[rule[3]])
+            
+            if range_that_fails_condition[range_idx][0] <= range_that_fails_condition[range_idx][1]:
+                helper(range_that_fails_condition, ruleset[1:])
 
     helper(ranges, ruleset=workflows_dct['in'])
     return accepted
